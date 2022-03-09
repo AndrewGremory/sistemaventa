@@ -165,6 +165,21 @@ if ($result_data > 0) {
 						</div>
 					</div>
 				</li>
+
+				<!-- Nav Item - Caja collapse -->
+				<li class="nav-item">
+					<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCaja" aria-expanded="true" aria-controls="collapseCaja">
+						<i class="fas fa-box"></i>
+						<span>Caja</span>
+						<i class="fas fa-angle-down fa-lg float-right"></i>
+					</a>
+					<div id="collapseCaja" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+						<div class="bg-white py-2 collapse-inner rounded">
+							<a class="collapse-item" href="Cajas.php">Caja</a>
+							<a class="collapse-item" href="Caja_arqueo.php">Caja/arqueo</a>
+						</div>
+					</div>
+				</li>
 				<?php if ($_SESSION['rol'] == 1) { ?>
 					<!-- Nav Item - Usuarios Collapse Menu -->
 					<li class="nav-item">
