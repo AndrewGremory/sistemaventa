@@ -27,14 +27,30 @@
                 <table class="table table-hover">
                     <thead class="thead-dark">
                         <tr>
-                            <th width="100px">Código</th>
-                            <th>Des.</th>
-                            <th>Stock</th>
-                            <th width="100px">Cantidad</th>
-                            <th class="textright">Precio</th>
-                            <th class="textright">Precio Total</th>
+                            <!-- <th width="100px">Código</th> -->
+                            <th>Jornada</th>
+                            <th>Apertura</th>
+                            <th width="100px">Cierre</th>
+                            <th class="textright">Tickets</th>
+                            <th class="textright">Venta Total</th>
                             <th>Acciones</th>
                         </tr>
+                        <tbody>
+                        <?php
+                                require "../conexion.php";
+                                $query = mysqli_query($conexion, "SELECT * FROM reporte ORDER BY id DESC");
+                                mysqli_close($conexion);
+                                $cli = mysqli_num_rows($query);
+
+                                if ($cli > 0) {
+                                    while ($dato = mysqli_fetch_array($query)) {
+                                ?>
+                                <tr>
+                                    <td><input type="text"><?php echo $dato['jornada']; ?> </td>
+                                </tr>
+
+                                
+                        </tbody>
                         <tr>
                             <td><input type="hidden" name="txt_cod_producto" id="txt_cod_producto">
                                 <input type="text" name="txt_cod_pro" id="txt_cod_pro">
@@ -78,15 +94,19 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Id</th>
-                                    <th>Fecha</th>
-                                    <th>Total</th>
-                                    <th>Acciones</th>
+                                    <th>Jornada</th>
+                                    <th>Apertura</th>
+                                    <th>Cierre</th>
+                                    <th>Tickets</th>
+                                    <th>Total Ventas</th>
+                                    <!-- <th>Accion</th> -->
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 require "../conexion.php";
-                                $query = mysqli_query($conexion, "SELECT nofactura, fecha,codcliente, totalfactura, estado FROM factura ORDER BY nofactura DESC");
+                                $query = mysqli_query($conexion, "SELECT * FROM reporte ORDER BY id DESC");
                                 mysqli_close($conexion);
                                 $cli = mysqli_num_rows($query);
 
@@ -94,12 +114,15 @@
                                     while ($dato = mysqli_fetch_array($query)) {
                                 ?>
                                         <tr>
-                                            <td><?php echo $dato['nofactura']; ?></td>
-                                            <td><?php echo $dato['fecha']; ?></td>
-                                            <td><?php echo $dato['totalfactura']; ?></td>
-                                            <td>
+                                            <td><?php echo $dato['id']; ?></td>
+                                            <td><?php echo $dato['jornada']; ?></td>
+                                            <td><?php echo $dato['apertura']; ?></td>
+                                            <td><?php echo $dato['cierre']; ?></td>
+                                            <td><?php echo $dato['tickets']; ?></td>
+                                            <td><?php echo $dato['total_ventas']; ?></td>
+                                            <!-- <td>
                                                 <button type="button" class="btn btn-primary view_factura" cl="<?php echo $dato['codcliente'];  ?>" f="<?php echo $dato['nofactura']; ?>">Ver</button>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                 <?php }
                                 } ?>
@@ -113,5 +136,5 @@
 
 </div>
 <!-- /.container-fluid -->
-
+                            }
 <?php include_once "includes/footer.php"; ?>
